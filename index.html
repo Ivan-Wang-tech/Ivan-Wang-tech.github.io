@@ -128,11 +128,6 @@
     let noiseOffset = 0;
     let isHovering = false;
     let stockData = [];
-    let proximaNova;
-    
-    function preload() {
-        proximaNova = loadFont('ProximaNova-Bold.otf');
-    }
 
     function setup() {
         let canvas = createCanvas(600, 100);
@@ -213,7 +208,7 @@
             noStroke();
             fill(gradient);
             rectMode(CENTER);
-            rect(x, y - h/2, w * 0.5, 2); // 宽度从0.6→0.5，高度从4→2
+            rect(x, y - h/2, w * 0.5, 2); 
             rect(x, y + h/2, w * 0.5, 2);
         }
     }

@@ -75,28 +75,148 @@ title: Ivan Wang - Math & CS Student
     <div id="signature-container"></div>
 
     <div class="contact-info">
-        <h1>IVAN WANG</h1>
         <p>New York, NY | yw6505@nyu.edu | (646) 283-8025 | <a href="https://linkedin.com/in/ivan-wang-3b2661287">linkedin.com/in/ivan-wang-3b2661287</a></p>
     </div>
 
    
     <div class="section">
         <h2>EDUCATION</h2>
-        <!-- ... -->
+        <div class="item">
+            <div class="item-header">
+                <span>New York University</span>
+                <span>New York, NY</span>
+            </div>
+            <div class="item-header">
+                <span>Bachelor of Arts in Math & CS</span>
+                <span>Expected May 2026</span>
+            </div>
+            <div class="item-content">
+                <ul>
+                    <li>Cumulative GPA: 3.85 / 4.00; Honor: Dean's List</li>
+                    <li>Relevant Coursework: Math in Finance, Intro to Math Modeling, Fundamentals of Machine Learning, Basic Algorithm, Data Structure, Computer System Organization, Operating System, Statistics and Probability, Info Tech in Bus & Society</li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <!-- ... -->
+
+    <div class="section">
+        <h2>PROFESSIONAL EXPERIENCE</h2>
+        
+        <div class="item">
+            <div class="item-header">
+                <span>Dalian Commodity Exchange</span>
+                <span>Dalian, China</span>
+            </div>
+            <div class="item-header">
+                <span>Derivatives Summer Analyst</span>
+                <span>Jun 2024 – Aug 2024</span>
+            </div>
+            <div class="item-content">
+                <ul>
+                    <li>Researched hedging strategies for temperature-linked derivatives, including parametric insurance case studies and OTC contract simulations for natural gas suppliers, contributing to a 10-page evaluation that informed DCE's risk frameworks</li>
+                    <li>Supported regional contract design by analyzing 50+ cities' climate data and simulating DAT threshold triggers in Python, aligning findings with National Meteorological Administration guidelines</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span>Huatai Securities</span>
+                <span>Nanjing, China</span>
+            </div>
+            <div class="item-header">
+                <span>Wealth Management Operations Summer Analyst</span>
+                <span>May 2023 – Jul 2023</span>
+            </div>
+            <div class="item-content">
+                <ul>
+                    <li>Engineered an Excel dynamic dashboard to track 1,500+ advisors' task completion rates in real-time, flagging 230+ underperforming advisors for targeted coaching, reducing regional KPI variance by 18%</li>
+                    <li>Conducted geospatial analysis of 10,000+ service records across 80+ branches using Python, identifying a 15% performance gap between northern & southern regions</li>
+                    <li>Evaluated client communication patterns and sentiment, refining response strategies, improving client satisfaction by 10%</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span>Independent Research</span>
+                <span>New York, NY</span>
+            </div>
+            <div class="item-header">
+                <span>Researcher</span>
+                <span>Sept 2024 – Present</span>
+            </div>
+            <div class="item-content">
+                <ul>
+                    <li>Conducted in-depth academic research under the guidance of Dr. Sinisa Vukelic at Columbia University on algorithms for videokeratography (VKS) to monitor corneal curvature; undertook the literature review of 20+ research journals</li>
+                    <li>Assisted in developing Python-based methods for calibrating corneal rings (Placido rings) from images</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>PROJECT EXPERIENCES</h2>
+        <div class="item">
+            <div class="item-header">
+                <span>Stock Market Analysis</span>
+                <span>New York, NY</span>
+            </div>
+            <div class="item-content">
+                <ul>
+                    <li>Leveraged Interactive Brokers (IBKR) API to retrieve real-time and historical stock market data, addressing missing values and outliers through data preprocessing techniques</li>
+                    <li>Developed and implemented an automated trading strategy by applying machine learning models, including LSTM, to predict future stock price movements</li>
+                    <li>Built and continuously managed a diversified stock portfolio; achieved an average monthly return rate of 1.5%+ through strategic portfolio management and risk-adjusted optimization</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>LEADERSHIP AND EXTRACURRICULAR</h2>
+        <div class="item">
+            <div class="item-header">
+                <span>NYU Math Major Peer Mentorship Program</span>
+                <span>New York, NY</span>
+            </div>
+            <div class="item-header">
+                <span>Mentor</span>
+                <span>Jan 2024 – Present</span>
+            </div>
+            <div class="item-content">
+                <ul>
+                    <li>Organized and led weekly engagement activities for 30+ mentees, including social events, educational workshops, networking opportunities, and professional development sessions, all tailored to mentees' academic and personal interests</li>
+                    <li>Facilitated peer connections by hosting interactive events, promoting knowledge sharing, and fostering a collaborative environment for both academic and extracurricular growth</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>SKILLS, ACTIVITIES & INTERESTS</h2>
+        <div class="item-content">
+            <p><strong>Technical Skills:</strong> Python, Java, SQL, C, Latex, Excel</p>
+            <p><strong>Interests:</strong> Poker, Fitness, Running, Tennis, Guitar</p>
+        </div>
+    </div>
 
     <script>
         let noiseOffset = 0;
         let isHovering = false;
         let stockData = [];
+        let proximaNova; 
+
+        function preload() {
+        proximaNova = loadFont('ProximaNova-Regular.otf');
+    }
 
         function setup() {
             let canvas = createCanvas(600, 100);
             canvas.parent('signature-container');
             canvas.mouseOver(() => { isHovering = true; });
             canvas.mouseOut(() => { isHovering = false; });
-            
+
+            textFont(proximaNova);
             textSize(36);
             textStyle(BOLD);
             stroke(0, 255, 0);

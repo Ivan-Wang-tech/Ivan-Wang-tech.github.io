@@ -124,93 +124,97 @@
         </div>
 
 
- <script>
-    let noiseOffset = 0;
-    let isHovering = false;
-    let stockData = [];
+    <script>
+        let noiseOffset = 0;
+        let isHovering = false;
+        let stockData = [];
 
-    function setup() {
-        let canvas = createCanvas(600, 100);
-        canvas.parent('signature-container');
-        canvas.mouseOver(() => isHovering = true);
-        canvas.mouseOut(() => {
-            isHovering = false;
-            redraw(); 
-        });
-        
-        textSize(36);
-        strokeWeight(1); 
-        
-        for (let i = 0; i < 20; i++) {
-            stockData.push(random(50, 150));
-        }
-    }
-
-    function draw() {
-        clear(); 
-        
-        if (isHovering) {
-            drawStockChart();
-        } else {
-            drawSignature();
-        }
-    }
-
-    function drawSignature() {
-        let signature = "IVAN WANG";
-        let x = 50;
-        
-        for (let i = 0; i < signature.length; i++) {
-            let charY = height/2 + sin(noiseOffset + i * 0.5) * 12;
+        function setup() {
+            let canvas = createCanvas(600, 100);
+            canvas.parent('signature-container');
+            canvas.mouseOver(() => isHovering = true);
+            canvas.mouseOut(() => {
+                isHovering = false;
+                redraw(); 
+            });
             
-            if (i < 4) {
+            textSize(36);
+            strokeWeight(1); 
+            
+          
+            for (let i = 0; i < 20; i++) {
+                stockData.push(random(50, 150));
+            }
+        }
+
+        function draw() {
+            clear(); 
+            
+            if (isHovering) {
+                drawStockChart();
+            } else {
+                drawSignature();
+            }
+        }
+
+        function drawSignature() {
+            let signature = "IVAN WANG";
+            let x = 50;
+            
+            for (let i = 0; i < signature.length; i++) {
+                let charY = height/2 + sin(noiseOffset + i * 0.5) * 12;
+                
+             
+                if (i < 4) {
+                    let gradient = drawingContext.createLinearGradient(
+                        x, charY-15, 
+                        x, charY+15
+                    );
+                    gradient.addColorStop(0, '#00FFFF');
+                    gradient.addColorStop(1, '#00FF00');
+                    drawingContext.fillStyle = gradient;
+                } else {
+                    fill(0, 255, 0); 
+                }
+                
+                noStroke();
+                text(signature[i], x, charY);
+                x += textWidth(signature[i]);
+            }
+            noiseOffset += 0.02;
+        }
+
+        function drawStockChart() {
+            let w = width / stockData.length;
+            drawingContext.lineWidth = 1.2; 
+            
+            for (let i = 0; i < stockData.length; i++) {
+                let h = stockData[i];
+                let x = i * w + w/2;
+                let y = height/2;
+                
+                stockData[i] += random(-2, 2);
+                stockData[i] = constrain(stockData[i], 60, 140);
+                
+                
                 let gradient = drawingContext.createLinearGradient(
-                    x, charY-15, 
-                    x, charY+15
+                    x, y - h/2, 
+                    x, y + h/2
                 );
                 gradient.addColorStop(0, '#00FFFF');
-                gradient.addColorStop(1, '#00FF00');
-                drawingContext.fillStyle = gradient;
-            } else {
-                fill(0, 255, 0); 
+                gradient.addColorStop(1, '#009900');
+                
+                drawingContext.strokeStyle = gradient;
+                line(x, y - h/2, x, y + h/2);
+                
+                
+                noStroke();
+                fill(gradient);
+                rectMode(CENTER);
+                rect(x, y - h/2, w * 0.5, 2);
+                rect(x, y + h/2, w * 0.5, 2);
             }
-            
-            noStroke();
-            text(signature[i], x, charY);
-            x += textWidth(signature[i]);
         }
-        noiseOffset += 0.02;
-    }
-
-    function drawStockChart() {
-        let w = width / stockData.length;
-        drawingContext.lineWidth = 1.2; 
-        
-        for (let i = 0; i < stockData.length; i++) {
-            let h = stockData[i];
-            let x = i * w + w/2;
-            let y = height/2;
-            
-            stockData[i] += random(-2, 2);
-            stockData[i] = constrain(stockData[i], 60, 140);
-            
-            let gradient = drawingContext.createLinearGradient(
-                x, y - h/2, 
-                x, y + h/2
-            );
-            gradient.addColorStop(0, '#00FFFF');
-            gradient.addColorStop(1, '#009900');
-            
-            drawingContext.strokeStyle = gradient;
-            line(x, y - h/2, x, y + h/2);
-            
-            noStroke();
-            fill(gradient);
-            rectMode(CENTER);
-            rect(x, y - h/2, w * 0.5, 2);
-            rect(x, y + h/2, w * 0.5, 2);
-        }
-    }
-</script>
+    </script>
 </body>
 </html>

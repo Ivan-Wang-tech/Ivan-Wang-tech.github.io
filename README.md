@@ -1,7 +1,7 @@
 # My Website Project
 
-🌐 **Live Demo**: [https://yourusername.github.io](https://yourusername.github.io)  
-📂 **Repository**: [GitHub Repo Link](https://github.com/yourusername/repo-name)
+🌐 **Live Demo**: [https://Ivan-Wang-tech.github.io](https://Ivan-Wang-tech.github.io)  
+📂 **Repository**: [GitHub Repo Link](https://github.com/Ivan-Wang-tech/Ivan-Wang-tech.github.io)
 
 ---
 

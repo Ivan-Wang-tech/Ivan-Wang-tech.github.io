@@ -1,0 +1,23 @@
+:root { --fg: #00ff00; --bg: #000; --muted: #333; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { font-family: 'Courier New', monospace; line-height: 1.6; color: var(--fg); background: var(--bg); margin: 0; }
+.container { max-width: 900px; margin: 0 auto; padding: 20px; }
+.site-header, .site-footer { border-bottom: 1px solid var(--muted); padding: 12px 20px; }
+.site-footer { border-top: 1px solid var(--muted); border-bottom: none; text-align: center; }
+.brand { font-weight: 700; margin-right: 16px; color: var(--fg); text-decoration: none; }
+nav a { color: var(--fg); text-decoration: none; margin-right: 12px; }
+nav a:hover { text-decoration: underline; }
+h1, h2 { color: var(--fg); border-bottom: 1px solid var(--muted); padding-bottom: 5px; }
+#signature-container { width: 100%; height: 120px; margin: 0 auto 30px; position: relative; cursor: pointer; }
+canvas { display: block; margin: 0 auto; }
+.section { margin-bottom: 24px; }
+.item { margin-bottom: 16px; }
+.item-header { display: flex; justify-content: space-between; font-weight: 700; gap: 8px; }
+.item-content { margin-left: 20px; }
+a { color: var(--fg); }
+a:hover { text-decoration: underline; }
+/* Cards for projects */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.card { border: 1px solid var(--muted); border-radius: 12px; padding: 16px; }
+.card h3 { margin-top: 0; }

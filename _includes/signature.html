@@ -1,75 +1,50 @@
 <script>
-let noiseOffset = 0;
-let stockData = [];
+let noiseOffset = 0, isHovering = false, stockData = [];
 
 function setup() {
-  const c = createCanvas(600, 120);
-  c.parent('signature-container');
+  let canvas = createCanvas(600, 100);
+  canvas.parent('signature-container');
+
+  canvas.mouseOver(() => { isHovering = true;  loop();  });
+  canvas.mouseOut(  () => { isHovering = false; loop();  });
+
   textSize(36);
   strokeWeight(1);
-  frameRate(60);               // 始终循环更顺滑
-  for (let i = 0; i < 20; i++) stockData.push(random(50, 150));
+  for (let i = 0; i < 20; i++) stockData.push(random(50,150));
 }
 
 function draw() {
-  background(0);               // 比 clear() 更稳定，避免看起来“停住”
-  
-  const over =
-    mouseX >= 0 && mouseX <= width &&
-    mouseY >= 0 && mouseY <= height;
-
-  if (over) {
-    drawStockChart();
-  } else {
-    drawSignature();
-  }
-
-  // 始终推进动画节奏（不依赖 hover）
-  noiseOffset += 0.02;
+  clear();
+  if (isHovering) drawStockChart();
+  else           drawSignature();
 }
 
 function drawSignature() {
-  const s = 'IVAN WANG';
-  let x = 50;
-
+  let s = "IVAN WANG", x = 50;
   for (let i = 0; i < s.length; i++) {
-    const y = height / 2 + sin(noiseOffset + i * 0.5) * 12;
-
+    let y = height/2 + sin(noiseOffset + i * 0.5) * 12;
     if (i < 4) {
-      const g = drawingContext.createLinearGradient(x, y - 15, x, y + 15);
-      g.addColorStop(0, '#00FFFF');
-      g.addColorStop(1, '#00FF00');
+      let g = drawingContext.createLinearGradient(x, y-15, x, y+15);
+      g.addColorStop(0, '#00FFFF'); g.addColorStop(1, '#00FF00');
       drawingContext.fillStyle = g;
-    } else {
-      fill(0, 255, 0);
-    }
-
-    noStroke();
-    text(s[i], x, y);
-    x += textWidth(s[i]);
+    } else { fill(0,255,0); }
+    noStroke(); text(s[i], x, y); x += textWidth(s[i]);
   }
+  noiseOffset += 0.02;
 }
 
 function drawStockChart() {
-  const w = width / stockData.length;
+  let w = width / stockData.length;
   drawingContext.lineWidth = 1.2;
-
   for (let i = 0; i < stockData.length; i++) {
-    let h = stockData[i];
-    const x = i * w + w / 2;
-    const y = height / 2;
-
-    stockData[i] = constrain(stockData[i] + random(-2, 2), 60, 140);
-
-    const g = drawingContext.createLinearGradient(x, y - h / 2, x, y + h / 2);
-    g.addColorStop(0, '#00FFFF');
-    g.addColorStop(1, '#009900');
+    let h = stockData[i], x = i*w + w/2, y = height/2;
+    stockData[i] = constrain(stockData[i] + random(-2,2), 60, 140);
+    let g = drawingContext.createLinearGradient(x, y-h/2, x, y+h/2);
+    g.addColorStop(0,'#00FFFF'); g.addColorStop(1,'#009900');
     drawingContext.strokeStyle = g;
-
-    line(x, y - h / 2, x, y + h / 2);
+    line(x, y-h/2, x, y+h/2);
     noStroke(); fill(g); rectMode(CENTER);
-    rect(x, y - h / 2, w * 0.5, 2);
-    rect(x, y + h / 2, w * 0.5, 2);
+    rect(x, y-h/2, w*0.5, 2); rect(x, y+h/2, w*0.5, 2);
   }
 }
 </script>

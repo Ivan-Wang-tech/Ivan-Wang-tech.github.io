@@ -1,5 +1,4 @@
-title: "WELCOME to IVAN's HACKER SITE"
-description: "A site for LIFE and TECH"
-remote_theme: pages-themes/hacker@v0.2.0
-plugins:
-  - jekyll-remote-theme
+title: Ivan Wang
+description: Quantitative Finance | NYU
+google_analytics: G-36MRWHP0YF
+url: https://ivan-wang-tech.github.io

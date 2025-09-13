@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Ivan Wang
-description: Ivan Wang · Quantitative Finance · NYU · Factor models, AI, and portfolio strategies.
+description: Ivan Wang · Quantitative Finance · NYU 
 ---
 
 
@@ -61,13 +61,3 @@ description: Ivan Wang · Quantitative Finance · NYU · Factor models, AI, and 
 </div>
 </div>
 </div>
-
-
-<script>
-let noiseOffset = 0, isHovering = false, stockData = [];
-function setup(){
-let canvas = createCanvas(600, 100); canvas.parent('signature-container');
-canvas.mouseOver(()=>isHovering=true); canvas.mouseOut(()=>{isHovering=false; redraw();});
-textSize(36); strokeWeight(1); for (let i=0;i<20;i++) stockData.push(random(50,150));
-}
-</script>

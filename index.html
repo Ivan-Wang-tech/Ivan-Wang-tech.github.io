@@ -1,220 +1,118 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>{{ page.title }}</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <style>
-        body {
-            font-family: 'Courier New', monospace;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #00ff00;
-            background-color: #000;
-        }
-        h1, h2 {
-            color: #00ff00;
-            border-bottom: 1px solid #333;
-            padding-bottom: 5px;
-        }
-        h1 {
-            text-align: center;
-        }
-        .contact-info {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .section {
-            margin-bottom: 25px;
-        }
-        .item {
-            margin-bottom: 15px;
-        }
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-        }
-        .item-content {
-            margin-left: 20px;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 5px;
-        }
-        a {
-            color: #00ff00;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        #signature-container {
-            width: 100%;
-            height: 120px;
-            margin: 0 auto 30px;
-            position: relative;
-            cursor: pointer;
-        }
-        canvas {
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body>
-    
-    <div id="signature-container"></div>
+---
+layout: default
+title: Ivan Wang
+---
 
-    <div class="contact-info">
-        <p>New York, NY | yw6505@nyu.edu | (646) 283-8025 | <a href="https://linkedin.com/in/ivan-wang-3b2661287">linkedin.com/in/ivan-wang-3b2661287</a></p>
+<div id="signature-container"></div>
+
+<div class="contact-info">
+  <p>New York, NY | yw6505@nyu.edu | (646) 283-8025 |
+  <a href="https://linkedin.com/in/ivan-wang-3b2661287">linkedin.com/in/ivan-wang-3b2661287</a></p>
+</div>
+
+<div class="section">
+  <h2>EDUCATION</h2>
+  <div class="item">
+    <div class="item-header">
+      <span>New York University</span>
+      <span>New York, NY</span>
     </div>
+  </div>
+</div>
 
-   
-    <div class="section">
-        <h2>EDUCATION</h2>
-        <div class="item">
-            <div class="item-header">
-                <span>New York University</span>
-                <span>New York, NY</span>
-            </div>
-        </div>
+<div class="section">
+  <h2>PROFESSIONAL EXPERIENCE</h2>
+
+  <div class="item">
+    <div class="item-header">
+      <span>Dalian Commodity Exchange</span>
+      <span>Dalian, China</span>
     </div>
+    <div class="item-header">
+      <span>Derivatives Summer Analyst</span>
+      <span>Jun 2024 – Aug 2024</span>
+    </div>
+    <div class="item-content">
+      <ul>
+        <li>Researched hedging strategies for temperature-linked derivatives…</li>
+        <li>Supported regional contract design by analyzing 50+ cities' climate data…</li>
+      </ul>
+    </div>
+  </div>
 
-    <div class="section">
-        <h2>PROFESSIONAL EXPERIENCE</h2>
-        
-        <div class="item">
-            <div class="item-header">
-                <span>Dalian Commodity Exchange</span>
-                <span>Dalian, China</span>
-            </div>
-            <div class="item-header">
-                <span>Derivatives Summer Analyst</span>
-                <span>Jun 2024 – Aug 2024</span>
-            </div>
-            <div class="item-content">
-                <ul>
-                    <li>Researched hedging strategies for temperature-linked derivatives, including parametric insurance case studies and OTC contract simulations for natural gas suppliers, contributing to a 10-page evaluation that informed DCE's risk frameworks</li>
-                    <li>Supported regional contract design by analyzing 50+ cities' climate data and simulating DAT threshold triggers in Python, aligning findings with National Meteorological Administration guidelines</li>
-                </ul>
-            </div>
-        </div>
+  <div class="item">
+    <div class="item-header">
+      <span>Huatai Securities</span>
+      <span>Nanjing, China</span>
+    </div>
+    <div class="item-header">
+      <span>Wealth Management Operations Summer Analyst</span>
+      <span>May 2023 – Jul 2023</span>
+    </div>
+    <div class="item-content">
+      <ul>
+        <li>Engineered an Excel dynamic dashboard…</li>
+        <li>Conducted geospatial analysis…</li>
+        <li>Evaluated client communication patterns…</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-        <div class="item">
-            <div class="item-header">
-                <span>Huatai Securities</span>
-                <span>Nanjing, China</span>
-            </div>
-            <div class="item-header">
-                <span>Wealth Management Operations Summer Analyst</span>
-                <span>May 2023 – Jul 2023</span>
-            </div>
-            <div class="item-content">
-                <ul>
-                    <li>Engineered an Excel dynamic dashboard to track 1,500+ advisors' task completion rates in real-time, flagging 230+ underperforming advisors for targeted coaching, reducing regional KPI variance by 18%</li>
-                    <li>Conducted geospatial analysis of 10,000+ service records across 80+ branches using Python, identifying a 15% performance gap between northern & southern regions</li>
-                    <li>Evaluated client communication patterns and sentiment, refining response strategies, improving client satisfaction by 10%</li>
-                </ul>
-            </div>
-        </div>
+<script>
+let noiseOffset = 0;
+let isHovering = false;
+let stockData = [];
 
+function setup() {
+  let canvas = createCanvas(600, 100);
+  canvas.parent('signature-container');
+  canvas.mouseOver(() => isHovering = true);
+  canvas.mouseOut(() => { isHovering = false; redraw(); });
+  textSize(36);
+  strokeWeight(1);
+  for (let i = 0; i < 20; i++) stockData.push(random(50, 150));
+}
 
-    <script>
-        let noiseOffset = 0;
-        let isHovering = false;
-        let stockData = [];
+function draw() {
+  clear();
+  if (isHovering) drawStockChart(); else drawSignature();
+}
 
-        function setup() {
-            let canvas = createCanvas(600, 100);
-            canvas.parent('signature-container');
-            canvas.mouseOver(() => isHovering = true);
-            canvas.mouseOut(() => {
-                isHovering = false;
-                redraw(); 
-            });
-            
-            textSize(36);
-            strokeWeight(1); 
-            
-          
-            for (let i = 0; i < 20; i++) {
-                stockData.push(random(50, 150));
-            }
-        }
+function drawSignature() {
+  let signature = "IVAN WANG";
+  let x = 50;
+  for (let i = 0; i < signature.length; i++) {
+    let charY = height/2 + sin(noiseOffset + i * 0.5) * 12;
 
-        function draw() {
-            clear(); 
-            
-            if (isHovering) {
-                drawStockChart();
-            } else {
-                drawSignature();
-            }
-        }
+    if (i < 4) {
+      let g = drawingContext.createLinearGradient(x, charY-15, x, charY+15);
+      g.addColorStop(0, '#00FFFF'); g.addColorStop(1, '#00FF00');
+      drawingContext.fillStyle = g;
+    } else {
+      fill(0, 255, 0);
+    }
+    noStroke();
+    text(signature[i], x, charY);
+    x += textWidth(signature[i]);
+  }
+  noiseOffset += 0.02;
+}
 
-        function drawSignature() {
-            let signature = "IVAN WANG";
-            let x = 50;
-            
-            for (let i = 0; i < signature.length; i++) {
-                let charY = height/2 + sin(noiseOffset + i * 0.5) * 12;
-                
-             
-                if (i < 4) {
-                    let gradient = drawingContext.createLinearGradient(
-                        x, charY-15, 
-                        x, charY+15
-                    );
-                    gradient.addColorStop(0, '#00FFFF');
-                    gradient.addColorStop(1, '#00FF00');
-                    drawingContext.fillStyle = gradient;
-                } else {
-                    fill(0, 255, 0); 
-                }
-                
-                noStroke();
-                text(signature[i], x, charY);
-                x += textWidth(signature[i]);
-            }
-            noiseOffset += 0.02;
-        }
-
-        function drawStockChart() {
-            let w = width / stockData.length;
-            drawingContext.lineWidth = 1.2; 
-            
-            for (let i = 0; i < stockData.length; i++) {
-                let h = stockData[i];
-                let x = i * w + w/2;
-                let y = height/2;
-                
-                stockData[i] += random(-2, 2);
-                stockData[i] = constrain(stockData[i], 60, 140);
-                
-                
-                let gradient = drawingContext.createLinearGradient(
-                    x, y - h/2, 
-                    x, y + h/2
-                );
-                gradient.addColorStop(0, '#00FFFF');
-                gradient.addColorStop(1, '#009900');
-                
-                drawingContext.strokeStyle = gradient;
-                line(x, y - h/2, x, y + h/2);
-                
-                
-                noStroke();
-                fill(gradient);
-                rectMode(CENTER);
-                rect(x, y - h/2, w * 0.5, 2);
-                rect(x, y + h/2, w * 0.5, 2);
-            }
-        }
-    </script>
-</body>
-</html>
+function drawStockChart() {
+  let w = width / stockData.length;
+  drawingContext.lineWidth = 1.2;
+  for (let i = 0; i < stockData.length; i++) {
+    let h = stockData[i];
+    let x = i * w + w/2, y = height/2;
+    stockData[i] = constrain(stockData[i] + random(-2, 2), 60, 140);
+    let g = drawingContext.createLinearGradient(x, y - h/2, x, y + h/2);
+    g.addColorStop(0, '#00FFFF'); g.addColorStop(1, '#009900');
+    drawingContext.strokeStyle = g;
+    line(x, y - h/2, x, y + h/2);
+    noStroke(); fill(g); rectMode(CENTER);
+    rect(x, y - h/2, w * 0.5, 2);
+    rect(x, y + h/2, w * 0.5, 2);
+  }
+}
+</script>

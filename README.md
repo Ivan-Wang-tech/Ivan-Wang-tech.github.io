@@ -11,6 +11,7 @@ description: Ivan Wang · Quantitative Finance · NYU
 <div class="contact-info" style="text-align:center;margin-bottom:30px;">
 <p>New York, NY · <a href="mailto:yw6505@nyu.edu">yw6505@nyu.edu</a> · (646) 283-8025 ·
 <a href="https://linkedin.com/in/ivan-wang-3b2661287">linkedin.com/in/ivan-wang-3b2661287</a></p>
+<a href="https://ivan-wang-tech.github.io">Website</a>
 </div>
 
 
